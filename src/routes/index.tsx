@@ -1,24 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+// The "AI Hospital Queue Prediction System" is built as standalone,
+// beginner-friendly HTML/CSS/JS files (public/site/). This route simply
+// embeds that static site so it appears in the live preview. The actual
+// project files — index.html, styles.css, script.js — can be opened
+// directly in VS Code or any online HTML compiler without a server.
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "AI Hospital Queue Prediction System" },
+      {
+        name: "description",
+        content:
+          "Predict waiting time and manage hospital queues efficiently using AI.",
+      },
+      { property: "og:title", content: "AI Hospital Queue Prediction System" },
+      {
+        property: "og:description",
+        content:
+          "Predict waiting time and manage hospital queues efficiently using AI.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <iframe
+      src="/site/index.html"
+      title="AI Hospital Queue Prediction System"
+      style={{
+        position: "fixed",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        border: "none",
+      }}
+    />
   );
 }

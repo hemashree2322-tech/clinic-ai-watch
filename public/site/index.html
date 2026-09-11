@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Hospital Queue Prediction System</title>
+  <meta name="description" content="Predict waiting time and manage hospital queues efficiently using AI." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <!-- Medical cross icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="name">CareWell Hospital</div>
+          <div class="sub">AI Queue Prediction System</div>
+        </div>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#" data-section="home" class="active">Home</a></li>
+        <li><a href="#" data-section="register">Register</a></li>
+        <li><a href="#" data-section="queue">Queue Status</a></li>
+        <li><a href="#" data-section="dashboard">Dashboard</a></li>
+        <li><a href="#" data-section="doctors">Doctors</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===================== HOME ===================== -->
+  <section id="home" class="section active">
+    <div class="container">
+
+      <!-- Hero -->
+      <div class="hero">
+        <h1>AI Hospital Queue Prediction System</h1>
+        <p>Predict waiting time and manage hospital queues efficiently using AI. Book your
+           appointment, track your token in real time, and avoid long waits.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="btnBook">Book Appointment</button>
+          <button class="btn btn-outline" id="btnQueue">Check Queue</button>
+        </div>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="ic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 5v6h-2V7h2zm0 8v2h-2v-2h2z"/></svg>
+          </div>
+          <h3>AI Wait Prediction</h3>
+          <p>Get an accurate estimate of your waiting time based on live queue data.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11z"/></svg>
+          </div>
+          <h3>Easy Appointment</h3>
+          <p>Register online in seconds and receive an instant patient token number.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 12c-4 0-9 2-9 6v2h18v-2c0-4-5-6-9-6z"/></svg>
+          </div>
+          <h3>Doctor Tracking</h3>
+          <p>See doctor availability and the current patient being consulted.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ic">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4 9h2v5h-2v-5zm4-12h2v17h-2V4zm4 6h2v11h-2V10z"/></svg>
+          </div>
+          <h3>Live Dashboard</h3>
+          <p>Monitor total patients, queue length and average waiting time at a glance.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== PATIENT REGISTRATION ===================== -->
+  <section id="register" class="section">
+    <div class="container">
+      <h2 class="section-title">Patient Registration</h2>
+      <p class="section-sub">Fill in your details to book an appointment and receive a token number.</p>
+
+      <div class="card form-card">
+        <form id="regForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="pname">Patient Name</label>
+              <input type="text" id="pname" placeholder="e.g. John Samuel" />
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" min="0" max="120" placeholder="e.g. 32" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="e.g. 9876543210" />
+            </div>
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department">
+                <option value="">-- Select Department --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="doctor">Doctor Selection</label>
+              <select id="doctor">
+                <option value="">-- Select Doctor --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="apptDate">Appointment Date</label>
+              <input type="date" id="apptDate" />
+            </div>
+            <div class="form-group full">
+              <label for="apptTime">Appointment Time</label>
+              <input type="time" id="apptTime" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit Registration</button>
+            <button type="reset" class="btn btn-outline">Reset</button>
+          </div>
+
+          <div id="regAlert" class="alert"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUEUE STATUS ===================== -->
+  <section id="queue" class="section">
+    <div class="container">
+      <h2 class="section-title">Queue Status</h2>
+      <p class="section-sub">Track your token and the live queue for your department.</p>
+
+      <!-- Your token summary -->
+      <div class="card" style="margin-bottom:24px;">
+        <div class="token-hero">
+          <div class="token-number">
+            <div class="label">Your Token</div>
+            <div class="num" id="myToken">--</div>
+          </div>
+          <div class="token-info">
+            <div class="row"><span>Patients Ahead</span><span id="patientsAhead">--</span></div>
+            <div class="row"><span>Current Token Being Served</span><span id="currentToken">--</span></div>
+            <div class="row"><span>Estimated Waiting Time</span><span id="estWait">--</span></div>
+            <div class="row"><span>Queue Status</span><span id="myStatus">--</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full queue table -->
+      <h3 class="section-title" style="font-size:18px;">Live Queue List</h3>
+      <div class="table-wrap" style="margin-top:14px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Patient Name</th>
+              <th>Department</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="queueTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DASHBOARD ===================== -->
+  <section id="dashboard" class="section">
+    <div class="container">
+      <h2 class="section-title">AI Prediction Dashboard</h2>
+      <p class="section-sub">Overview of hospital queue metrics powered by AI prediction.</p>
+
+      <!-- Stat cards -->
+      <div class="grid grid-4">
+        <div class="stat-card">
+          <div class="stat-ic ic-blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div class="stat-value" id="statTotal">25</div>
+          <div class="stat-label">Total Patients Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ic ic-amber">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+          </div>
+          <div class="stat-value" id="statQueue">12</div>
+          <div class="stat-label">Patients in Queue</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ic ic-green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+          </div>
+          <div class="stat-value" id="statWait">35</div>
+          <div class="stat-label">Avg. Waiting Time (mins)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-ic ic-purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div class="stat-value" id="statDocs">4</div>
+          <div class="stat-label">Available Doctors</div>
+        </div>
+      </div>
+
+      <!-- Bar chart -->
+      <div class="card chart-card">
+        <div class="chart-head">
+          <h3>Predicted Waiting Time (by hour)</h3>
+          <span class="badge badge-consultation">AI Prediction</span>
+        </div>
+        <div class="chart-bars" id="barChart"></div>
+      </div>
+
+      <!-- Line chart -->
+      <div class="card chart-card">
+        <div class="chart-head">
+          <h3>Waiting Time Trend</h3>
+          <span class="badge badge-waiting">Live</span>
+        </div>
+        <svg class="line-chart" id="lineChart" viewBox="0 0 560 240" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DOCTORS ===================== -->
+  <section id="doctors" class="section">
+    <div class="container">
+      <h2 class="section-title">Doctor Section</h2>
+      <p class="section-sub">View doctor availability and current consultation status.</p>
+      <div class="grid grid-2" id="doctorList"></div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <strong>CareWell Hospital</strong> — AI Hospital Queue Prediction System<br/>
+    A B.E. Computer Science & Engineering academic project. Sample data for demonstration only.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
